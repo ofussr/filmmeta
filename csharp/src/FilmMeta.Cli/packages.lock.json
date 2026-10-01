@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "MetadataExtractor": {
+        "type": "Transitive",
+        "resolved": "2.9.3",
+        "contentHash": "7dBcqlPC2Zc/bsZtXnv8nCWe5h5WsLHszzHtxnpcsVy4MwlD3KQ3wVNoiYBm0a3rzt5hRwAosPvLPhlXrV5lyg==",
+        "dependencies": {
+          "XmpCore": "6.1.10.1"
+        }
+      },
+      "XmpCore": {
+        "type": "Transitive",
+        "resolved": "6.1.10.1",
+        "contentHash": "/Tp2/e39e7z8hLtS4TXt0FNNZHbf5yNFfHS0/59soXlgOzZlyRZivvzWpvujyaWkTWWgecp/1nHxkuc5vntn7A=="
+      },
+      "filmmeta.core": {
+        "type": "Project"
+      },
+      "filmmeta.metadata": {
+        "type": "Project",
+        "dependencies": {
+          "FilmMeta.Core": "[1.0.0-alpha.1, )",
+          "MetadataExtractor": "[2.9.3, )",
+          "XmpCore": "[6.1.10.1, )"
+        }
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@ jobs:
         with:
           dotnet-version: '10.0.401'
       - name: Restore
-        run: dotnet restore FilmMeta.slnx
+        run: dotnet restore FilmMeta.slnx --locked-mode
       - name: Build
         run: dotnet build FilmMeta.slnx -c Release --no-restore
       - name: Test compatibility and CLI
@@ -38,16 +38,6 @@ jobs:
       - name: Publish Windows console
         if: matrix.os == 'windows-latest'
         run: dotnet publish src/FilmMeta.Cli -c Release -r win-x64 --self-contained true -o artifacts/win-x64
-      - name: Record dependency locks
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          Get-ChildItem -Recurse -Filter packages.lock.json | ForEach-Object {
-            $relative = [IO.Path]::GetRelativePath((Get-Location).Path, $_.FullName)
-            Write-Output ("FILMMETA_LOCK_START " + $relative)
-            Write-Output ([IO.File]::ReadAllText($_.FullName))
-            Write-Output "FILMMETA_LOCK_END"
-          }
       - name: Complete published package
         if: matrix.os == 'windows-latest'
         shell: pwsh

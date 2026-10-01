@@ -27,7 +27,7 @@ A folder is scanned without subfolders unless `--recursive` is supplied. Symboli
 Install the .NET 10 SDK, open `FilmMeta.slnx` in Rider, and restore NuGet packages. From this directory:
 
 ```powershell
-dotnet restore FilmMeta.slnx
+dotnet restore FilmMeta.slnx --locked-mode
 dotnet build FilmMeta.slnx -c Release --no-restore
 dotnet run --project tests/FilmMeta.Tests -c Release --no-build
 dotnet run --project src/FilmMeta.Cli -c Release -- read "D:\Photos\frame.tif" --json
@@ -39,7 +39,7 @@ To publish a self-contained Windows x64 package:
 dotnet publish src/FilmMeta.Cli -c Release -r win-x64 --self-contained true -o artifacts/win-x64
 ```
 
-The workflow adds the application and dependency license files to the published package. For redistribution, preserve those files. The application version is set in `Directory.Build.props`. It is independent of the unchanged Python application version.
+The workflow adds the application and dependency license files to the published package. For redistribution, preserve those files. The application version is set in `Directory.Build.props`. It is independent of the unchanged Python application version. The verified SDK is 10.0.401; NuGet dependency graphs and package hashes are committed in `packages.lock.json` files. Runtime-specific publishing may extend the local restore graph; the committed locks describe the ordinary solution build.
 
 ## Components
 
