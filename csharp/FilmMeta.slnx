@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FilmMeta.Core/FilmMeta.Core.csproj" />
+    <Project Path="src/FilmMeta.Metadata/FilmMeta.Metadata.csproj" />
+    <Project Path="src/FilmMeta.Cli/FilmMeta.Cli.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FilmMeta.Tests/FilmMeta.Tests.csproj" />
+  </Folder>
+</Solution>

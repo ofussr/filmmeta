@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>FilmMeta.Cli</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FilmMeta.Core/FilmMeta.Core.csproj" />
+    <ProjectReference Include="../FilmMeta.Metadata/FilmMeta.Metadata.csproj" />
+  </ItemGroup>
+</Project>

@@ -10,3 +10,8 @@ settings.json
 *.filmmeta.bak
 *.filmmeta.*.bak
 .filmmeta-*
+**/bin/
+**/obj/
+.idea/
+*.user
+artifacts/

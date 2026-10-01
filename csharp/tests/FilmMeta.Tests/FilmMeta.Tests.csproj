@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsTestProject>true</IsTestProject>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <PackageReference Include="xunit.v3" Version="4.0.1" />
+    <ProjectReference Include="../../src/FilmMeta.Core/FilmMeta.Core.csproj" />
+    <ProjectReference Include="../../src/FilmMeta.Metadata/FilmMeta.Metadata.csproj" />
+    <ProjectReference Include="../../src/FilmMeta.Cli/FilmMeta.Cli.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fixtures/python-oracle.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
