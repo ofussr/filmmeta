@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+library.json
+settings.json
+*.filmmeta.bak
+*.filmmeta.*.bak
+.filmmeta-*
