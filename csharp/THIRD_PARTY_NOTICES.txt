@@ -1,0 +1,32 @@
+FilmMeta C# read prototype
+
+FilmMeta
+Copyright (c) 2026 Mikhail Dmitrievich Miruschenko
+License: MIT. See the repository LICENSE, copied as licenses/FilmMeta-MIT.txt
+in the Windows artifact.
+
+MetadataExtractor 2.9.3
+Copyright 2002-2019 Drew Noakes and contributors
+Copyright 2014 Imazen LLC (initial conversion from Java to C#)
+License: Apache License, Version 2.0
+Source: https://github.com/drewnoakes/metadata-extractor-dotnet
+See licenses/MetadataExtractor-Apache-2.0.txt.
+
+XmpCore 6.1.10.1
+Adobe XMP code copyright 2006 Adobe Systems Incorporated.
+.NET package copyright 2015-2021, maintained by Drew Noakes and contributors.
+Initial .NET port by Yakov Danila and Nathanael Jones.
+License: BSD-3-Clause, as declared by the package project.
+Source: https://github.com/drewnoakes/xmp-core-dotnet
+See licenses/XmpCore-BSD-3-Clause.txt.
+
+.NET runtime
+Copyright (c) .NET Foundation and Contributors.
+Copyright (c) Microsoft Corporation.
+The self-contained package carries the runtime license and third-party
+notices copied from the exact runtime package used for publishing.
+
+Tests use xUnit.net under Apache-2.0. Test packages are not distributed
+with the CLI runtime.
+
+No Qt, Steamworks, pyexiv2 or Exiv2 runtime is included in this milestone.

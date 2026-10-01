@@ -1,0 +1,335 @@
+[
+  {
+    "id": "film.manufacturer",
+    "role": "film",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "FilmManufacturer",
+    "analogProperty": "FilmMaker",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "film.name",
+    "role": "film",
+    "field": "name",
+    "labelKey": "field.name",
+    "xmpProperty": "FilmName",
+    "analogProperty": "Film",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "film.iso",
+    "role": "film",
+    "field": "iso",
+    "labelKey": "field.iso",
+    "xmpProperty": "FilmISO",
+    "analogProperty": null,
+    "exifTag": "Exif.Photo.ISOSpeedRatings",
+    "standardXmp": [
+      "Xmp.exif.ISOSpeedRatings",
+      "Xmp.exifEX.ISOSpeed"
+    ],
+    "defaultVisible": true
+  },
+  {
+    "id": "film.process",
+    "role": "film",
+    "field": "process",
+    "labelKey": "field.process",
+    "xmpProperty": "FilmProcess",
+    "analogProperty": "DevelopProcess",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "camera.manufacturer",
+    "role": "camera",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "OriginalCameraMake",
+    "analogProperty": null,
+    "exifTag": "Exif.Image.Make",
+    "standardXmp": [
+      "Xmp.tiff.Make"
+    ],
+    "defaultVisible": true
+  },
+  {
+    "id": "camera.model",
+    "role": "camera",
+    "field": "model",
+    "labelKey": "field.model",
+    "xmpProperty": "OriginalCameraModel",
+    "analogProperty": null,
+    "exifTag": "Exif.Image.Model",
+    "standardXmp": [
+      "Xmp.tiff.Model"
+    ],
+    "defaultVisible": true
+  },
+  {
+    "id": "lens.manufacturer",
+    "role": "lens",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "OriginalLensMake",
+    "analogProperty": null,
+    "exifTag": "Exif.Photo.LensMake",
+    "standardXmp": [
+      "Xmp.exifEX.LensMake"
+    ],
+    "defaultVisible": true
+  },
+  {
+    "id": "lens.model",
+    "role": "lens",
+    "field": "model",
+    "labelKey": "field.model",
+    "xmpProperty": "OriginalLensModel",
+    "analogProperty": null,
+    "exifTag": "Exif.Photo.LensModel",
+    "standardXmp": [
+      "Xmp.exifEX.LensModel",
+      "Xmp.aux.Lens"
+    ],
+    "defaultVisible": true
+  },
+  {
+    "id": "scanner.manufacturer",
+    "role": "scanner",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "ScannerMake",
+    "analogProperty": "ScannerMaker",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "scanner.model",
+    "role": "scanner",
+    "field": "model",
+    "labelKey": "field.model",
+    "xmpProperty": "ScannerModel",
+    "analogProperty": "Scanner",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "copy_camera.manufacturer",
+    "role": "copy_camera",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "DigitizerCameraMake",
+    "analogProperty": null,
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "copy_camera.model",
+    "role": "copy_camera",
+    "field": "model",
+    "labelKey": "field.model",
+    "xmpProperty": "DigitizerCameraModel",
+    "analogProperty": null,
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "copy_lens.manufacturer",
+    "role": "copy_lens",
+    "field": "manufacturer",
+    "labelKey": "field.manufacturer",
+    "xmpProperty": "DigitizerLensMake",
+    "analogProperty": null,
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "copy_lens.model",
+    "role": "copy_lens",
+    "field": "model",
+    "labelKey": "field.model",
+    "xmpProperty": "DigitizerLensModel",
+    "analogProperty": null,
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": true
+  },
+  {
+    "id": "film.alias",
+    "role": "film",
+    "field": "alias",
+    "labelKey": "field.alias",
+    "xmpProperty": "FilmAlias",
+    "analogProperty": "FilmAlias",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "film.grain",
+    "role": "film",
+    "field": "grain",
+    "labelKey": "field.grain",
+    "xmpProperty": "FilmGrain",
+    "analogProperty": "FilmGrain",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "film.type",
+    "role": "film",
+    "field": "type",
+    "labelKey": "field.film_type",
+    "xmpProperty": "FilmType",
+    "analogProperty": "FilmType",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "exposure.number",
+    "role": "exposure",
+    "field": "number",
+    "labelKey": "field.frame_number",
+    "xmpProperty": "ExposureNumber",
+    "analogProperty": "ExposureNumber",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "exposure.roll_id",
+    "role": "exposure",
+    "field": "roll_id",
+    "labelKey": "field.roll_id",
+    "xmpProperty": "RollId",
+    "analogProperty": "RollId",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "exposure.filter",
+    "role": "exposure",
+    "field": "filter",
+    "labelKey": "field.filter",
+    "xmpProperty": "Filter",
+    "analogProperty": "Filter",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "lens.serial",
+    "role": "lens",
+    "field": "serial",
+    "labelKey": "field.serial",
+    "xmpProperty": "OriginalLensSerialNumber",
+    "analogProperty": "LensSerialNumber",
+    "exifTag": "Exif.Photo.LensSerialNumber",
+    "standardXmp": [
+      "Xmp.exifEX.LensSerialNumber"
+    ],
+    "defaultVisible": false
+  },
+  {
+    "id": "copy_lens.serial",
+    "role": "copy_lens",
+    "field": "serial",
+    "labelKey": "field.serial",
+    "xmpProperty": "DigitizerLensSerialNumber",
+    "analogProperty": null,
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "scanner.software",
+    "role": "scanner",
+    "field": "software",
+    "labelKey": "field.software",
+    "xmpProperty": "ScannerSoftware",
+    "analogProperty": "ScannerSoftware",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.manufacturer",
+    "role": "development",
+    "field": "manufacturer",
+    "labelKey": "field.developer_maker",
+    "xmpProperty": "DeveloperMake",
+    "analogProperty": "DeveloperMaker",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.name",
+    "role": "development",
+    "field": "name",
+    "labelKey": "field.developer",
+    "xmpProperty": "DeveloperName",
+    "analogProperty": "Developer",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.dilution",
+    "role": "development",
+    "field": "dilution",
+    "labelKey": "field.dilution",
+    "xmpProperty": "DeveloperDilution",
+    "analogProperty": "DeveloperDilution",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.time",
+    "role": "development",
+    "field": "time",
+    "labelKey": "field.develop_time",
+    "xmpProperty": "DevelopTime",
+    "analogProperty": "DevelopTime",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.lab",
+    "role": "development",
+    "field": "lab",
+    "labelKey": "field.lab",
+    "xmpProperty": "Lab",
+    "analogProperty": "Lab",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  },
+  {
+    "id": "development.lab_address",
+    "role": "development",
+    "field": "lab_address",
+    "labelKey": "field.lab_address",
+    "xmpProperty": "LabAddress",
+    "analogProperty": "LabAddress",
+    "exifTag": null,
+    "standardXmp": [],
+    "defaultVisible": false
+  }
+]

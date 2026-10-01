@@ -1,0 +1,97 @@
+name: C# prototype
+
+on:
+  push:
+    branches: [main, rewrite/csharp]
+    paths: ['csharp/**', '.github/workflows/csharp.yml']
+  pull_request:
+    paths: ['csharp/**', '.github/workflows/csharp.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: csharp
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_NOLOGO: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore
+        run: dotnet restore FilmMeta.slnx
+      - name: Build
+        run: dotnet build FilmMeta.slnx -c Release --no-restore
+      - name: Test compatibility and CLI
+        run: dotnet run --project tests/FilmMeta.Tests -c Release --no-build
+      - name: Record dependency locks
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          Get-ChildItem -Recurse -Filter packages.lock.json | ForEach-Object {
+            $relative = [IO.Path]::GetRelativePath((Get-Location).Path, $_.FullName)
+            Write-Output ("FILMMETA_LOCK_START " + $relative)
+            Write-Output ([IO.File]::ReadAllText($_.FullName))
+            Write-Output "FILMMETA_LOCK_END"
+          }
+      - name: Publish Windows console
+        if: matrix.os == 'windows-latest'
+        run: dotnet publish src/FilmMeta.Cli -c Release -r win-x64 --self-contained true -o artifacts/win-x64
+      - name: Complete published package
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $destination = "artifacts/win-x64"
+          Copy-Item README.md,THIRD_PARTY_NOTICES.txt $destination
+          Copy-Item licenses "$destination/licenses" -Recurse
+          Copy-Item ../LICENSE "$destination/licenses/FilmMeta-MIT.txt"
+          $cache = Join-Path $env:USERPROFILE ".nuget/packages/microsoft.netcore.app.runtime.win-x64"
+          $runtime = Get-ChildItem $cache -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          if (-not $runtime) { throw "Published runtime package is missing." }
+          $license = Get-ChildItem $runtime.FullName -Recurse -File | Where-Object Name -Match '^LICENSE\.(TXT|txt)$' | Select-Object -First 1
+          $notice = Get-ChildItem $runtime.FullName -Recurse -File | Where-Object Name -Match '^THIRD-PARTY-NOTICES\.(TXT|txt)$' | Select-Object -First 1
+          if (-not $license -or -not $notice) { throw "Runtime license material is missing." }
+          Copy-Item $license.FullName "$destination/licenses/dotnet-LICENSE.txt"
+          Copy-Item $notice.FullName "$destination/licenses/dotnet-THIRD-PARTY-NOTICES.txt"
+          @{ sdk = (dotnet --version); runtime = $runtime.Name; commit = "${{ github.sha }}" } |
+            ConvertTo-Json | Set-Content "$destination/build-info.json" -Encoding utf8
+      - name: Verify published executable
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $cli = Join-Path (Get-Location).Path "artifacts/win-x64/FilmMeta.Cli.exe"
+          & $cli --version
+          if ($LASTEXITCODE -ne 0) { throw "Published CLI does not start." }
+          $fixtures = Get-Content tests/FilmMeta.Tests/Fixtures/python-oracle.json -Raw | ConvertFrom-Json
+          $sample = $fixtures | Where-Object name -EQ "own-jpeg"
+          $directory = Join-Path $env:RUNNER_TEMP "Фото Мирущенко"
+          New-Item $directory -ItemType Directory -Force | Out-Null
+          $image = Join-Path $directory "кадр.jpg"
+          [IO.File]::WriteAllBytes($image, [Convert]::FromBase64String($sample.data))
+          $before = (Get-FileHash $image -Algorithm SHA256).Hash
+          $result = (& $cli read $image --json) -join [Environment]::NewLine
+          if ($LASTEXITCODE -ne 0) { throw "Published CLI cannot read a photo." }
+          $report = $result | ConvertFrom-Json
+          if ($report.files.Count -ne 1 -or $report.files[0].values.'film.iso' -ne "400") {
+            throw "Published CLI returned incorrect values."
+          }
+          if ((Get-FileHash $image -Algorithm SHA256).Hash -ne $before) { throw "Reading modified the photo." }
+      - name: Upload Windows prototype
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: FilmMeta-Cli-win-x64
+          path: csharp/artifacts/win-x64/
+          if-no-files-found: error
+          retention-days: 30
