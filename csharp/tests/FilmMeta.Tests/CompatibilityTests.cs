@@ -17,7 +17,7 @@ public sealed class CompatibilityTests
         var path = folder.Save(fixture, "Кадр с пробелами");
         var before = SHA256.HashData(File.ReadAllBytes(path));
         var modified = File.GetLastWriteTimeUtc(path);
-        var actual = new PhotoMetadataReader().Read(path);
+        var actual = new PhotoMetadataReader().Read(path, TestContext.Current.CancellationToken);
         Assert.Equal(fixture.IsDng, actual.IsDng);
         Assert.Equal(fixture.Values.Count, actual.Values.Count);
         foreach (var (id, value) in fixture.Values)
@@ -38,7 +38,7 @@ public sealed class CompatibilityTests
         using var folder = new TemporaryFolder();
         var path = Path.Combine(folder.Path, "big.tif");
         File.WriteAllBytes(path, System.Text.Encoding.ASCII.GetBytes(signature + "0000"));
-        Assert.Throws<NotSupportedException>(() => new PhotoMetadataReader().Read(path));
+        Assert.Throws<NotSupportedException>(() => new PhotoMetadataReader().Read(path, TestContext.Current.CancellationToken));
     }
 
     [Theory]
@@ -50,7 +50,7 @@ public sealed class CompatibilityTests
         using var folder = new TemporaryFolder();
         var path = Path.Combine(folder.Path, "broken.jpg");
         File.WriteAllText(path, content);
-        Assert.Throws<InvalidDataException>(() => new PhotoMetadataReader().Read(path));
+        Assert.Throws<InvalidDataException>(() => new PhotoMetadataReader().Read(path, TestContext.Current.CancellationToken));
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public sealed class CompatibilityTests
         using var folder = new TemporaryFolder();
         var path = Path.Combine(folder.Path, "data.txt");
         File.WriteAllText(path, "text");
-        Assert.Throws<NotSupportedException>(() => new PhotoMetadataReader().Read(path));
+        Assert.Throws<NotSupportedException>(() => new PhotoMetadataReader().Read(path, TestContext.Current.CancellationToken));
     }
 
     [Fact]

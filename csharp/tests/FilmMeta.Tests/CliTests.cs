@@ -15,7 +15,7 @@ public sealed class CliTests
     {
         using var output = new StringWriter();
         using var error = new StringWriter();
-        Assert.Equal(0, new CliApplication(new FailingReader()).Run(new[] { command }, output, error));
+        Assert.Equal(0, new CliApplication(new FailingReader()).Run(new[] { command }, output, error, TestContext.Current.CancellationToken));
         Assert.NotEmpty(output.ToString());
         Assert.Empty(error.ToString());
     }
@@ -28,7 +28,7 @@ public sealed class CliTests
     {
         using var output = new StringWriter();
         using var error = new StringWriter();
-        Assert.Equal(2, new CliApplication(new FailingReader()).Run(args, output, error));
+        Assert.Equal(2, new CliApplication(new FailingReader()).Run(args, output, error, TestContext.Current.CancellationToken));
         Assert.Empty(output.ToString());
         Assert.NotEmpty(error.ToString());
     }
@@ -43,7 +43,7 @@ public sealed class CliTests
         using var output = new StringWriter();
         using var error = new StringWriter();
         var code = new CliApplication(new PhotoMetadataReader()).Run(
-            new[] { "read", bad, good, "--json" }, output, error);
+            new[] { "read", bad, good, "--json" }, output, error, TestContext.Current.CancellationToken);
         var report = JsonDocument.Parse(output.ToString()).RootElement;
         Assert.Equal(1, code);
         Assert.Single(report.GetProperty("files").EnumerateArray());
@@ -62,7 +62,7 @@ public sealed class CliTests
         using var output = new StringWriter();
         using var error = new StringWriter();
         var code = new CliApplication(new PhotoMetadataReader()).Run(
-            new[] { "read", first, folder.Path, "--recursive", "--json" }, output, error);
+            new[] { "read", first, folder.Path, "--recursive", "--json" }, output, error, TestContext.Current.CancellationToken);
         Assert.Equal(0, code);
         Assert.Equal(2, JsonDocument.Parse(output.ToString()).RootElement.GetProperty("files").GetArrayLength());
     }
@@ -74,7 +74,7 @@ public sealed class CliTests
         using var output = new StringWriter();
         using var error = new StringWriter();
         Assert.Equal(1, new CliApplication(new PhotoMetadataReader()).Run(
-            new[] { "read", folder.Path, "--json" }, output, error));
+            new[] { "read", folder.Path, "--json" }, output, error, TestContext.Current.CancellationToken));
         var report = JsonDocument.Parse(output.ToString()).RootElement;
         Assert.Empty(report.GetProperty("files").EnumerateArray());
         Assert.Single(report.GetProperty("errors").EnumerateArray());

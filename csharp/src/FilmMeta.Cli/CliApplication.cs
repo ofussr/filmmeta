@@ -134,7 +134,7 @@ public sealed class CliApplication(IMetadataReader reader)
     }
 
     private static bool IsFileError(Exception e) =>
-        e is IOException or UnauthorizedAccessException or NotSupportedException
+        e is IOException or InvalidDataException or UnauthorizedAccessException or NotSupportedException
             or ArgumentException or MetadataExtractor.ImageProcessingException;
 
     private static void Print(MetadataSnapshot snapshot, TextWriter output)
